@@ -31,10 +31,10 @@ export const Navbar: React.FC = () => {
   }, []);
 
   const navItems = [
-    { id: 'hero', label: 'Home', icon: <Compass className="w-4 h-4" /> },
-    { id: 'experience', label: 'Journey', icon: <User className="w-4 h-4" /> },
-    { id: 'essays', label: 'Essays', icon: <BookOpen className="w-4 h-4" /> },
-    { id: 'contact', label: 'Contact', icon: <Send className="w-4 h-4" /> },
+    { id: 'hero', label: '首页', icon: <Compass className="w-4 h-4" /> },
+    { id: 'experience', label: '经历', icon: <User className="w-4 h-4" /> },
+    { id: 'essays', label: '文章', icon: <BookOpen className="w-4 h-4" /> },
+    { id: 'contact', label: '联系', icon: <Send className="w-4 h-4" /> },
   ];
 
   const scrollTo = (id: string) => {
