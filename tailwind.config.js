@@ -27,6 +27,8 @@ export default {
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
         display: ['"Outfit"', 'system-ui', 'sans-serif'],
+        serif: ['"Newsreader"', 'Georgia', 'serif'],
+        script: ['"Caveat"', 'cursive'],
       },
       boxShadow: {
         'warm-sm': '0 2px 8px rgba(45, 38, 33, 0.04)',
