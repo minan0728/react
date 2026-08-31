@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: 'Outfit', system-ui, sans-serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #FAF7F2;
+    color: #2D2621;
+    overflow-x: hidden;
+  }
+
+  /* Custom Warm Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #FAF7F2;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #E8DFD5;
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #F4A261;
+  }
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(45, 38, 33, 0.06);
+}
+
+.glass-panel-subtle {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(45, 38, 33, 0.04);
+}
+
+/* Warm Glow gradient effects */
+.warm-glow-peach {
+  background: radial-gradient(circle at center, rgba(244, 162, 97, 0.18) 0%, rgba(244, 162, 97, 0) 70%);
+}
+
+.warm-glow-coral {
+  background: radial-gradient(circle at center, rgba(231, 111, 81, 0.15) 0%, rgba(231, 111, 81, 0) 70%);
+}
+
+.warm-glow-matcha {
+  background: radial-gradient(circle at center, rgba(138, 176, 125, 0.18) 0%, rgba(138, 176, 125, 0) 70%);
+}
