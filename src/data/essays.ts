@@ -9,7 +9,7 @@ export const essaysData: EssayItem[] = [
     readTime: '4 min read',
     summary: '在这个充斥着黑白灰冷酷科技感和算法信息流的时代，我想为自己的大学时光保留一块温暖、有呼吸感且可爱的数字自留地。',
     tags: ['生活感悟', '独立博客', '大学日常'],
-    coverGradient: 'from-amber-100/80 via-orange-50/60 to-rose-100/50',
+    coverGradient: 'from-pink-100/80 via-rose-50/60 to-sky-100/50',
     content: `
 # 为什么我想搭建一个有温度的个人角落
 

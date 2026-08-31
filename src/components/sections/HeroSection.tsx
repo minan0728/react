@@ -63,22 +63,23 @@ export const HeroSection: React.FC = () => {
 
       {/* Hero Bottom Banner Area: Huge Cutout Masked Typography */}
       <div className="relative w-full mt-8 sm:mt-12 select-none">
-        {/* Giant Masked Text Container */}
-        <div className="relative w-full overflow-hidden bg-transparent">
+        {/* Giant Masked Text Container with Dynamic Editorial Tilt */}
+        <div className="relative w-full overflow-hidden bg-transparent py-4">
           {/* Cutout Masked Big Text with Avatar/Art Background */}
           <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            initial={{ y: 50, opacity: 0, rotate: -2 }}
+            animate={{ y: 0, opacity: 1, rotate: -2 }}
             transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full relative h-40 sm:h-64 md:h-80 lg:h-96"
+            className="w-full relative h-48 sm:h-72 md:h-96 lg:h-[28rem] flex items-center justify-center transform -rotate-2 scale-105"
           >
             {/* The Text Cutout Container using background-clip: text */}
             <div
-              className="w-full h-full flex items-center justify-center font-display font-black tracking-tighter uppercase leading-none text-transparent bg-clip-text text-[26vw] sm:text-[24vw] lg:text-[22vw] filter drop-shadow-sm"
+              className="w-full h-full flex items-center justify-center font-display font-black tracking-tighter uppercase leading-none text-transparent bg-clip-text text-[26vw] sm:text-[24vw] lg:text-[23vw] filter drop-shadow-md select-none"
               style={{
                 backgroundImage: `url(${profileData.avatarUrl})`,
-                backgroundPosition: 'center 30%',
-                backgroundSize: 'cover',
+                backgroundPosition: '52% 48%',
+                backgroundSize: '150% auto',
+                backgroundRepeat: 'no-repeat',
                 WebkitBackgroundClip: 'text',
               }}
             >
@@ -86,7 +87,7 @@ export const HeroSection: React.FC = () => {
             </div>
 
             {/* Bottom soft gradient blend */}
-            <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-warm-bg to-transparent pointer-events-none" />
+            <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-warm-bg to-transparent pointer-events-none" />
           </motion.div>
         </div>
 

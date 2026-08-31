@@ -11,17 +11,17 @@ export default {
       },
       colors: {
         warm: {
-          bg: '#FAF7F2',
+          bg: '#FFF8FA',             // 波奇酱柔粉奶白底色
           card: '#FFFFFF',
-          'card-subtle': '#F4EFE6',
-          text: '#2D2621',
-          'text-muted': '#7C7267',
-          peach: '#F4A261',
-          'peach-light': '#FCEADE',
-          coral: '#E76F51',
-          matcha: '#8AB07D',
-          border: 'rgba(45, 38, 33, 0.08)',
-          'border-hover': 'rgba(244, 162, 97, 0.4)',
+          'card-subtle': '#FDF0F4',  // 卡片次级柔粉
+          text: '#2B2328',           // 柔和深碳紫咖字色
+          'text-muted': '#7D6F77',   // 次要文本浅紫灰
+          peach: '#FA7298',          // 波奇标志性粉发主色 (Bocchi Pink)
+          'peach-light': '#FDE2EB',  // 浅粉背景点缀
+          coral: '#FFB830',          // 眼睛十字星/发饰暖黄色 (Star Yellow)
+          matcha: '#4FC3F7',         // 发饰青蓝方块色 (Cyan Cube)
+          border: 'rgba(43, 35, 40, 0.08)',
+          'border-hover': 'rgba(250, 114, 152, 0.45)',
         }
       },
       fontFamily: {

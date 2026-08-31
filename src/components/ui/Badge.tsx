@@ -14,9 +14,9 @@ export const Badge: React.FC<BadgeProps> = ({
   dot = false
 }) => {
   const variantStyles = {
-    peach: 'bg-warm-peach/15 text-[#C86A28] border-warm-peach/30',
-    coral: 'bg-warm-coral/15 text-[#C04C33] border-warm-coral/30',
-    matcha: 'bg-warm-matcha/15 text-[#4E7643] border-warm-matcha/30',
+    peach: 'bg-warm-peach/15 text-[#D64474] border-warm-peach/30',
+    coral: 'bg-warm-coral/15 text-[#C48000] border-warm-coral/30',
+    matcha: 'bg-warm-matcha/15 text-[#0288D1] border-warm-matcha/30',
     neutral: 'bg-stone-100 text-warm-text-muted border-stone-200'
   };
 

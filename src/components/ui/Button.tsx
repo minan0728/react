@@ -25,7 +25,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   const variantStyles = {
     primary:
-      'bg-warm-peach text-white shadow-warm-sm hover:bg-[#E8924F] hover:shadow-warm-glow border border-warm-peach/40',
+      'bg-warm-peach text-white shadow-warm-sm hover:bg-[#E85B84] hover:shadow-warm-glow border border-warm-peach/40',
     secondary:
       'bg-warm-card text-warm-text border border-warm-border hover:border-warm-peach/50 hover:bg-warm-card-subtle shadow-warm-sm',
     ghost:

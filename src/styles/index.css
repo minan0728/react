@@ -13,8 +13,8 @@
   }
 
   body {
-    background-color: #FAF7F2;
-    color: #2D2621;
+    background-color: #FFF8FA;
+    color: #2B2328;
     overflow-x: hidden;
   }
 
@@ -24,43 +24,43 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #FAF7F2;
+    background: #FFF8FA;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #E8DFD5;
+    background: #F2DCE4;
     border-radius: 9999px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #F4A261;
+    background: #FA7298;
   }
 }
 
 /* Glassmorphism helpers */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(45, 38, 33, 0.06);
+  border: 1px solid rgba(43, 35, 40, 0.06);
 }
 
 .glass-panel-subtle {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(45, 38, 33, 0.04);
+  border: 1px solid rgba(43, 35, 40, 0.04);
 }
 
-/* Warm Glow gradient effects */
+/* Warm Glow gradient effects (Bocchi themed: Pink / Yellow / Cyan) */
 .warm-glow-peach {
-  background: radial-gradient(circle at center, rgba(244, 162, 97, 0.18) 0%, rgba(244, 162, 97, 0) 70%);
+  background: radial-gradient(circle at center, rgba(250, 114, 152, 0.22) 0%, rgba(250, 114, 152, 0) 70%);
 }
 
 .warm-glow-coral {
-  background: radial-gradient(circle at center, rgba(231, 111, 81, 0.15) 0%, rgba(231, 111, 81, 0) 70%);
+  background: radial-gradient(circle at center, rgba(255, 184, 48, 0.2) 0%, rgba(255, 184, 48, 0) 70%);
 }
 
 .warm-glow-matcha {
-  background: radial-gradient(circle at center, rgba(138, 176, 125, 0.18) 0%, rgba(138, 176, 125, 0) 70%);
+  background: radial-gradient(circle at center, rgba(79, 195, 247, 0.22) 0%, rgba(79, 195, 247, 0) 70%);
 }
