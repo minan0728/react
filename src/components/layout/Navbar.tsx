@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowUpRight, Github, Mail } from 'lucide-react';
-import { profileData } from '../../data/profile';
+import { motion } from 'framer-motion';
+import { Sparkles, Compass, User, BookOpen, Send } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
+  const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
+
       const sections = ['hero', 'experience', 'essays', 'contact'];
-      const scrollPosition = window.scrollY + 250;
+      const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
         const el = document.getElementById(section);
@@ -30,164 +31,81 @@ export const Navbar: React.FC = () => {
   }, []);
 
   const navItems = [
-    { id: 'hero', label: 'HOME', count: '' },
-    { id: 'experience', label: 'JOURNEY', count: '(12)' },
-    { id: 'essays', label: 'JOURNAL', count: '(20)' },
-    { id: 'contact', label: 'CONTACT', count: '' },
+    { id: 'hero', label: '首页', icon: <Compass className="w-4 h-4" /> },
+    { id: 'experience', label: '经历', icon: <User className="w-4 h-4" /> },
+    { id: 'essays', label: '文章', icon: <BookOpen className="w-4 h-4" /> },
+    { id: 'contact', label: '联系', icon: <Send className="w-4 h-4" /> },
   ];
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
-      setMobileMenuOpen(false);
     }
   };
 
   return (
-    <>
-      {/* Top Header Bar (Fixed & Minimal) */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 sm:px-10 lg:px-14 py-6 bg-transparent pointer-events-none">
-        {/* Brand Logo - Top Left */}
+    <header className="fixed top-5 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+      <motion.nav
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+        className={`pointer-events-auto flex items-center gap-1.5 md:gap-3 px-3.5 md:px-5 py-2 md:py-2.5 rounded-full border transition-all duration-300 ${
+          scrolled
+            ? 'glass-panel shadow-warm-md border-warm-peach/25 bg-white/85'
+            : 'glass-panel-subtle shadow-warm-sm border-white/40'
+        }`}
+      >
+        {/* Brand/Logo */}
         <button
           onClick={() => scrollTo('hero')}
-          className="pointer-events-auto group flex items-center gap-1.5 focus:outline-none"
+          className="flex items-center gap-2 pr-2 md:pr-3 border-r border-warm-border/60 group"
         >
-          <span className="font-display font-extrabold text-xl sm:text-2xl tracking-tighter text-warm-text uppercase">
-            MINAN
+          <span className="w-7 h-7 rounded-full bg-warm-peach/20 text-warm-peach flex items-center justify-center group-hover:scale-110 transition-transform">
+            <Sparkles className="w-4 h-4" />
           </span>
-          <span className="w-2 h-2 rounded-full bg-warm-peach group-hover:scale-125 transition-transform" />
+          <span className="font-display font-bold text-sm md:text-base text-warm-text tracking-wide">
+            Minan<span className="text-warm-peach font-normal">.dev</span>
+          </span>
         </button>
 
-        {/* Hamburger / Menu button - Top Right */}
-        <div className="pointer-events-auto flex items-center gap-4">
-          <button
-            onClick={() => scrollTo('contact')}
-            className="hidden sm:inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-widest text-warm-text/80 hover:text-warm-text transition-colors"
-          >
-            <span>Say Hi</span>
-            <ArrowUpRight className="w-3.5 h-3.5 text-warm-peach" />
-          </button>
-
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="w-10 h-10 rounded-full bg-warm-card border border-warm-border/60 shadow-warm-sm flex items-center justify-center text-warm-text hover:border-warm-text transition-colors focus:outline-none"
-            aria-label="Toggle navigation menu"
-          >
-            {mobileMenuOpen ? (
-              <X className="w-5 h-5" />
-            ) : (
-              <div className="flex flex-col gap-1 items-end w-4">
-                <span className="w-4 h-[2px] bg-warm-text rounded-full" />
-                <span className="w-2.5 h-[2px] bg-warm-text rounded-full" />
-              </div>
-            )}
-          </button>
-        </div>
-      </header>
-
-      {/* Left Vertical Sidebar Navigation (Desktop >= lg screens) */}
-      <aside className="hidden lg:flex fixed left-0 top-0 bottom-0 z-40 w-24 flex-col justify-between items-center py-10 pointer-events-none">
-        {/* Top spacer to align below brand logo */}
-        <div className="h-10" />
-
-        {/* Center: Vertical Rotated Nav Links */}
-        <nav className="pointer-events-auto flex flex-col items-center gap-12">
+        {/* Navigation links */}
+        <div className="flex items-center gap-1">
           {navItems.map((item) => {
             const isActive = activeSection === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
-                className={`group relative text-[11px] font-bold tracking-[0.2em] uppercase transition-all duration-300 transform -rotate-90 origin-center whitespace-nowrap py-1 ${
+                className={`relative flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs md:text-sm font-medium transition-colors duration-200 ${
                   isActive
-                    ? 'text-warm-text font-black scale-105'
-                    : 'text-warm-text-muted/60 hover:text-warm-text'
+                    ? 'text-warm-text font-semibold'
+                    : 'text-warm-text-muted hover:text-warm-text'
                 }`}
               >
-                <span className="inline-flex items-center gap-1">
-                  <span>{item.label}</span>
-                  {item.count && (
-                    <span className="text-[9px] font-mono text-warm-peach/90">
-                      {item.count}
-                    </span>
-                  )}
-                </span>
                 {isActive && (
-                  <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-warm-peach rounded-full" />
+                  <motion.div
+                    layoutId="activeNavIndicator"
+                    className="absolute inset-0 bg-warm-peach/20 border border-warm-peach/30 rounded-full"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
                 )}
+                <span className="relative z-10 hidden sm:inline-block">{item.icon}</span>
+                <span className="relative z-10">{item.label}</span>
               </button>
             );
           })}
-        </nav>
-
-        {/* Bottom: Social Icons */}
-        <div className="pointer-events-auto flex flex-col items-center gap-4 text-warm-text-muted hover:text-warm-text">
-          <a
-            href={profileData.socials.find((s) => s.iconName === 'github')?.url || 'https://github.com'}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-7 h-7 rounded-full flex items-center justify-center hover:text-warm-peach hover:scale-110 transition-transform"
-            aria-label="GitHub"
-          >
-            <Github className="w-4 h-4" />
-          </a>
-          <a
-            href={profileData.socials.find((s) => s.iconName === 'mail')?.url || 'mailto:minan@example.com'}
-            className="w-7 h-7 rounded-full flex items-center justify-center hover:text-warm-peach hover:scale-110 transition-transform"
-            aria-label="Email"
-          >
-            <Mail className="w-4 h-4" />
-          </a>
         </div>
-      </aside>
 
-      {/* Fullscreen Overlay Menu (when hamburger is clicked) */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-[#FAF7F2]/95 backdrop-blur-xl flex flex-col justify-center px-10 sm:px-20 lg:hidden"
-          >
-            <nav className="flex flex-col gap-6">
-              {navItems.map((item, idx) => (
-                <motion.button
-                  key={item.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.08 }}
-                  onClick={() => scrollTo(item.id)}
-                  className="text-left font-display font-bold text-3xl sm:text-5xl text-warm-text hover:text-warm-peach transition-colors flex items-baseline justify-between border-b border-warm-border/40 pb-4"
-                >
-                  <span>{item.label}</span>
-                  {item.count && (
-                    <span className="text-base font-mono text-warm-text-muted">
-                      {item.count}
-                    </span>
-                  )}
-                </motion.button>
-              ))}
-            </nav>
-
-            <div className="mt-12 flex items-center gap-6 text-warm-text-muted">
-              {profileData.socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm font-medium hover:text-warm-peach transition-colors"
-                >
-                  {s.label}
-                </a>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+        {/* Say Hi CTA */}
+        <button
+          onClick={() => scrollTo('contact')}
+          className="hidden md:inline-flex items-center gap-1.5 ml-2 px-3.5 py-1.5 rounded-full bg-warm-peach text-white text-xs font-semibold shadow-warm-sm hover:bg-[#E8924F] transition-colors"
+        >
+          <span>Say Hi</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+        </button>
+      </motion.nav>
+    </header>
   );
 };

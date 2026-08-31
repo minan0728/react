@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Sparkles, X, ArrowDown } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowDown } from 'lucide-react';
 import { profileData } from '../../data/profile';
 
 export const HeroSection: React.FC = () => {
-  const [isPlayingReel, setIsPlayingReel] = useState(false);
-
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -16,7 +14,7 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col justify-between pt-24 sm:pt-28 pb-12 overflow-hidden bg-warm-bg"
+      className="relative min-h-screen flex flex-col justify-between pt-28 sm:pt-32 pb-12 overflow-hidden bg-warm-bg"
     >
       {/* Subtle Warm Backdrop Lighting */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -25,7 +23,7 @@ export const HeroSection: React.FC = () => {
       </div>
 
       {/* Main Content Area */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-12 lg:pl-32 lg:pr-16 flex-1 flex flex-col justify-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 flex-1 flex flex-col justify-center">
         {/* Main Headline Group (Editorial Serif + Flowing Script) */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -63,28 +61,11 @@ export const HeroSection: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Hero Bottom Banner Area: Huge Cutout Masked Typography + Floating Badge */}
+      {/* Hero Bottom Banner Area: Huge Cutout Masked Typography */}
       <div className="relative w-full mt-8 sm:mt-12 select-none">
         {/* Giant Masked Text Container */}
         <div className="relative w-full overflow-hidden bg-transparent">
-          {/* Circular "PLAY REEL" Floating Badge (Absolute top-right of the giant text) */}
-          <motion.button
-            onClick={() => setIsPlayingReel(true)}
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.4, delay: 0.4 }}
-            className="absolute top-0 right-8 sm:right-16 lg:right-32 -translate-y-1/2 z-20 w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-[#1C1815] text-white flex flex-col items-center justify-center shadow-2xl hover:bg-warm-peach transition-colors group cursor-pointer"
-            aria-label="Play Reel Demo"
-          >
-            <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current text-white mb-1 group-hover:scale-110 transition-transform" />
-            <span className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-center px-2">
-              PLAY REEL
-            </span>
-          </motion.button>
-
-          {/* Cutout Masked Big Text with Cinematic Photography Background */}
+          {/* Cutout Masked Big Text with Avatar/Art Background */}
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -95,8 +76,8 @@ export const HeroSection: React.FC = () => {
             <div
               className="w-full h-full flex items-center justify-center font-display font-black tracking-tighter uppercase leading-none text-transparent bg-clip-text text-[26vw] sm:text-[24vw] lg:text-[22vw] filter drop-shadow-sm"
               style={{
-                backgroundImage: `url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=2000&q=85')`,
-                backgroundPosition: 'center 40%',
+                backgroundImage: `url('/avatar.jpg')`,
+                backgroundPosition: 'center 30%',
                 backgroundSize: 'cover',
                 WebkitBackgroundClip: 'text',
               }}
@@ -120,44 +101,6 @@ export const HeroSection: React.FC = () => {
           </button>
         </div>
       </div>
-
-      {/* Video Reel Modal */}
-      <AnimatePresence>
-        {isPlayingReel && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-8"
-            onClick={() => setIsPlayingReel(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="relative w-full max-w-4xl aspect-video bg-[#1C1815] rounded-3xl overflow-hidden shadow-2xl border border-white/10 flex flex-col items-center justify-center text-center p-8"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                onClick={() => setIsPlayingReel(false)}
-                className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
-              <div className="w-16 h-16 rounded-full bg-warm-peach text-white flex items-center justify-center mb-4 shadow-warm-glow">
-                <Sparkles className="w-8 h-8" />
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-display font-bold text-white mb-2">
-                Minan ✦ Creative Works & Reel
-              </h3>
-              <p className="text-white/60 max-w-md text-sm sm:text-base">
-                专注于设计感、细腻动效与现代交互工程。浏览下方内容继续了解我的技术栈与随笔文章。
-              </p>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 };

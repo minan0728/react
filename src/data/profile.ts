@@ -5,7 +5,7 @@ export const profileData: ProfileData = {
   title: 'CS Undergrad & Creative Explorer',
   roleDescription: '计算机专业本科生 · 热爱前端工程、创意编码与温润设计',
   status: '🟢 正在探索好玩的技术与生活灵感',
-  avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
+  avatarUrl: '/avatar.jpg',
   location: 'China · Campus Life',
   bio: [
     '你好！我是 Minan，一名主修计算机科学的在读本科生。',
