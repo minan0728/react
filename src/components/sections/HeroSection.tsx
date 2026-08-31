@@ -76,7 +76,7 @@ export const HeroSection: React.FC = () => {
             <div
               className="w-full h-full flex items-center justify-center font-display font-black tracking-tighter uppercase leading-none text-transparent bg-clip-text text-[26vw] sm:text-[24vw] lg:text-[22vw] filter drop-shadow-sm"
               style={{
-                backgroundImage: `url('/avatar.jpg')`,
+                backgroundImage: `url(${profileData.avatarUrl})`,
                 backgroundPosition: 'center 30%',
                 backgroundSize: 'cover',
                 WebkitBackgroundClip: 'text',

@@ -1,11 +1,12 @@
 import { ProfileData } from '../types';
+import avatarImg from '../assets/avatar.jpg';
 
 export const profileData: ProfileData = {
   name: 'Minan',
   title: 'CS Undergrad & Creative Explorer',
   roleDescription: '计算机专业本科生 · 热爱前端工程、创意编码与温润设计',
   status: '🟢 正在探索好玩的技术与生活灵感',
-  avatarUrl: '/avatar.jpg',
+  avatarUrl: avatarImg,
   location: 'China · Campus Life',
   bio: [
     '你好！我是 Minan，一名主修计算机科学的在读本科生。',
