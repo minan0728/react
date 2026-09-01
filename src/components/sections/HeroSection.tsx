@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
 import { useContent } from '../../context/ContentContext';
+import { CardContainer, CardBody, CardItem } from '../ui/3d-card';
 
 export const HeroSection: React.FC = () => {
   const { profile } = useContent();
@@ -63,38 +64,40 @@ export const HeroSection: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Hero Bottom Banner Area: Huge Cutout Masked Typography */}
-      <div className="relative w-full mt-8 sm:mt-12 select-none">
-        {/* Giant Masked Text Container with Left-High Right-Low Tilt */}
-        <div className="relative w-full overflow-hidden bg-transparent py-4">
-          {/* Cutout Masked Big Text with Avatar/Art Background */}
-          <motion.div
-            initial={{ y: 50, opacity: 0, rotate: -4 }}
-            animate={{ y: 0, opacity: 1, rotate: -4 }}
-            transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full relative h-48 sm:h-72 md:h-96 lg:h-[30rem] flex items-center justify-center transform -rotate-4 scale-105"
-          >
-            {/* The Text Cutout Container using background-clip: text */}
-            <div
-              className="w-full h-full flex items-center justify-center font-display font-black tracking-tighter uppercase leading-none text-transparent bg-clip-text text-[26vw] sm:text-[24vw] lg:text-[23vw] filter drop-shadow-md select-none"
-              style={{
-                backgroundImage: `url(${profile.avatarUrl})`,
-                backgroundPosition: '55% 44%',
-                backgroundSize: '115% auto',
-                backgroundRepeat: 'no-repeat',
-                WebkitBackgroundClip: 'text',
-              }}
+      {/* Hero Bottom Banner Area: 3D Interactive Perspective Cutout Masked Typography */}
+      <div className="relative w-full mt-4 sm:mt-8 select-none">
+        <CardContainer className="w-full py-4 cursor-pointer" containerClassName="w-full">
+          <CardBody className="w-full flex items-center justify-center">
+            {/* Cutout Masked Big Text with 3D Float Item */}
+            <motion.div
+              initial={{ y: 50, opacity: 0, rotate: -4 }}
+              animate={{ y: 0, opacity: 1, rotate: -4 }}
+              transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="w-full relative h-48 sm:h-72 md:h-96 lg:h-[30rem] flex items-center justify-center transform -rotate-4 scale-105"
             >
-              {profile.name.toUpperCase()}
-            </div>
+              {/* CardItem with translateZ for depth and 3D floating effect */}
+              <CardItem
+                translateZ={90}
+                className="w-full h-full flex items-center justify-center font-display font-black tracking-tighter uppercase leading-none text-transparent bg-clip-text text-[26vw] sm:text-[24vw] lg:text-[23vw] filter drop-shadow-2xl select-none transition-transform duration-200"
+                style={{
+                  backgroundImage: `url(${profile.avatarUrl})`,
+                  backgroundPosition: '55% 44%',
+                  backgroundSize: '115% auto',
+                  backgroundRepeat: 'no-repeat',
+                  WebkitBackgroundClip: 'text',
+                }}
+              >
+                {profile.name.toUpperCase()}
+              </CardItem>
 
-            {/* Bottom soft gradient blend */}
-            <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-warm-bg to-transparent pointer-events-none" />
-          </motion.div>
-        </div>
+              {/* Bottom soft gradient blend */}
+              <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-warm-bg to-transparent pointer-events-none" />
+            </motion.div>
+          </CardBody>
+        </CardContainer>
 
         {/* Scroll indicator */}
-        <div className="flex justify-center mt-4">
+        <div className="flex justify-center -mt-2">
           <button
             onClick={() => scrollTo('experience')}
             className="inline-flex items-center gap-2 text-xs font-medium text-warm-text-muted hover:text-warm-peach transition-colors"
