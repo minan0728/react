@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useRef, useEffect } from 'react';
+import React, { createContext, useState, useContext, useRef } from 'react';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -27,14 +27,13 @@ export const CardContainer = ({
     if (!containerRef.current) return;
     const { left, top, width, height } = containerRef.current.getBoundingClientRect();
 
-    // 缓和倾斜幅度（除以 65，限制最大倾斜角度在 8deg 以内，防止快速划过触发 GPU 重绘破损）
-    const x = Math.max(-8, Math.min(8, (e.clientX - left - width / 2) / 65));
-    const y = Math.max(-8, Math.min(8, (e.clientY - top - height / 2) / 65));
+    const x = Math.max(-6, Math.min(6, (e.clientX - left - width / 2) / 80));
+    const y = Math.max(-6, Math.min(6, (e.clientY - top - height / 2) / 80));
 
     if (rafId.current) cancelAnimationFrame(rafId.current);
     rafId.current = requestAnimationFrame(() => {
       if (containerRef.current) {
-        containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
+        containerRef.current.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${-y}deg)`;
       }
     });
   };
@@ -47,31 +46,24 @@ export const CardContainer = ({
     setIsMouseEntered(false);
     if (rafId.current) cancelAnimationFrame(rafId.current);
     if (containerRef.current) {
-      containerRef.current.style.transform = `rotateY(0deg) rotateX(0deg)`;
+      containerRef.current.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg)`;
     }
   };
 
   return (
     <MouseEnterContext.Provider value={[isMouseEntered, setIsMouseEntered]}>
-      <div
-        className={cn('flex items-center justify-center', containerClassName)}
-        style={{
-          perspective: '1200px',
-        }}
-      >
+      <div className={cn('flex items-center justify-center', containerClassName)}>
         <div
           ref={containerRef}
           onMouseEnter={handleMouseEnter}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           className={cn(
-            'flex items-center justify-center relative transition-transform duration-300 ease-out will-change-transform',
+            'flex items-center justify-center relative transition-transform duration-300 ease-out',
             className
           )}
           style={{
-            transformStyle: 'preserve-3d',
-            backfaceVisibility: 'hidden',
-            WebkitBackfaceVisibility: 'hidden',
+            transform: 'perspective(1000px) rotateY(0deg) rotateX(0deg)',
           }}
         >
           {children}
@@ -88,20 +80,7 @@ export const CardBody = ({
   children: React.ReactNode;
   className?: string;
 }) => {
-  return (
-    <div
-      className={cn(
-        'h-full w-full [transform-style:preserve-3d] [&>*]:[transform-style:preserve-3d]',
-        className
-      )}
-      style={{
-        backfaceVisibility: 'hidden',
-        WebkitBackfaceVisibility: 'hidden',
-      }}
-    >
-      {children}
-    </div>
-  );
+  return <div className={cn('h-full w-full', className)}>{children}</div>;
 };
 
 export const CardItem = ({
@@ -129,30 +108,8 @@ export const CardItem = ({
   style?: React.CSSProperties;
   [key: string]: any;
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isMouseEntered] = useMouseEnter();
-
-  useEffect(() => {
-    if (!ref.current) return;
-    if (isMouseEntered) {
-      ref.current.style.transform = `translate3d(${translateX}px, ${translateY}px, ${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
-    } else {
-      ref.current.style.transform = `translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
-    }
-  }, [isMouseEntered, translateX, translateY, translateZ, rotateX, rotateY, rotateZ]);
-
   return (
-    <Tag
-      ref={ref}
-      className={cn('transition-transform duration-300 ease-out will-change-transform', className)}
-      style={{
-        ...style,
-        transformStyle: 'preserve-3d',
-        backfaceVisibility: 'hidden',
-        WebkitBackfaceVisibility: 'hidden',
-      }}
-      {...rest}
-    >
+    <Tag className={cn('transition-all duration-300 ease-out', className)} style={style} {...rest}>
       {children}
     </Tag>
   );
