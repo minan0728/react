@@ -68,12 +68,12 @@ export const HeroSection: React.FC = () => {
       <div className="relative w-full mt-4 sm:mt-8 select-none">
         <CardContainer className="w-full py-4 cursor-pointer" containerClassName="w-full">
           <CardBody className="w-full flex items-center justify-center">
-            {/* Cutout Masked Big Text with 3D Float Item */}
+            {/* Cutout Masked Big Text with 3D Float Item (左高右低：顺时针旋转 rotate-3) */}
             <motion.div
-              initial={{ y: 50, opacity: 0, rotate: -4 }}
-              animate={{ y: 0, opacity: 1, rotate: -4 }}
+              initial={{ y: 50, opacity: 0, rotate: 3 }}
+              animate={{ y: 0, opacity: 1, rotate: 3 }}
               transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="w-full relative h-48 sm:h-72 md:h-96 lg:h-[30rem] flex items-center justify-center transform -rotate-4 scale-105"
+              className="w-full relative h-48 sm:h-72 md:h-96 lg:h-[30rem] flex items-center justify-center transform rotate-3 scale-105"
             >
               {/* CardItem with subtle translateZ for depth and 3D floating effect */}
               <CardItem
@@ -81,7 +81,7 @@ export const HeroSection: React.FC = () => {
                 className="w-full h-full flex items-center justify-center font-display font-black tracking-tighter uppercase leading-none text-transparent bg-clip-text text-[26vw] sm:text-[24vw] lg:text-[23vw] filter drop-shadow-2xl select-none transition-transform duration-200"
                 style={{
                   backgroundImage: `url(${profile.avatarUrl})`,
-                  backgroundPosition: '55% 44%',
+                  backgroundPosition: '55% 48%',
                   backgroundSize: '115% auto',
                   backgroundRepeat: 'no-repeat',
                   WebkitBackgroundClip: 'text',
