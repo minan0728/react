@@ -39,11 +39,18 @@ export const HeroSection: React.FC = () => {
             Let's create things
           </h1>
 
-          {/* Bottom Line: Bold Flowing Script Accent */}
-          <div className="mt-1 sm:mt-2 -ml-1 sm:-ml-2">
-            <span className="font-script font-bold text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] text-warm-text leading-[0.85] tracking-wide inline-block transform -rotate-1 hover:rotate-0 transition-transform duration-300">
-              together<span className="text-warm-peach">.</span>
-            </span>
+          {/* Bottom Line: Bold Flowing Script Accent with 3D Card Hover */}
+          <div className="mt-1 sm:mt-2 -ml-1 sm:-ml-2 inline-block">
+            <CardContainer className="py-2 cursor-pointer" containerClassName="inline-block">
+              <CardBody className="flex items-center justify-start">
+                <CardItem
+                  translateZ={50}
+                  className="font-script font-bold text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] text-warm-text leading-[0.85] tracking-wide inline-block transform -rotate-1 select-none"
+                >
+                  together<span className="text-warm-peach">.</span>
+                </CardItem>
+              </CardBody>
+            </CardContainer>
           </div>
 
           {/* Subtitle / Positioning Statement */}
