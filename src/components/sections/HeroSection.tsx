@@ -1,9 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
-import { profileData } from '../../data/profile';
+import { useContent } from '../../context/ContentContext';
 
 export const HeroSection: React.FC = () => {
+  const { profile } = useContent();
+
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -55,7 +57,7 @@ export const HeroSection: React.FC = () => {
               <strong className="text-warm-text font-bold">Less talk, more craft.</strong>
             </p>
             <p className="mt-2 text-xs sm:text-sm text-warm-text-muted/80">
-              ✦ {profileData.roleDescription}
+              ✦ {profile.roleDescription}
             </p>
           </motion.div>
         </motion.div>
@@ -76,14 +78,14 @@ export const HeroSection: React.FC = () => {
             <div
               className="w-full h-full flex items-center justify-center font-display font-black tracking-tighter uppercase leading-none text-transparent bg-clip-text text-[26vw] sm:text-[24vw] lg:text-[23vw] filter drop-shadow-md select-none"
               style={{
-                backgroundImage: `url(${profileData.avatarUrl})`,
+                backgroundImage: `url(${profile.avatarUrl})`,
                 backgroundPosition: '55% 44%',
                 backgroundSize: '115% auto',
                 backgroundRepeat: 'no-repeat',
                 WebkitBackgroundClip: 'text',
               }}
             >
-              MINAN
+              {profile.name.toUpperCase()}
             </div>
 
             {/* Bottom soft gradient blend */}

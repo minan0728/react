@@ -16,7 +16,7 @@ import { Container } from '../layout/Container';
 import { Card } from '../ui/Card';
 import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
-import { profileData } from '../../data/profile';
+import { useContent } from '../../context/ContentContext';
 
 const iconMap: Record<string, LucideIcon> = {
   github: Github,
@@ -26,8 +26,9 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 export const ContactFooter: React.FC = () => {
+  const { profile, openAuthDialog } = useContent();
   const [copied, setCopied] = useState(false);
-  const email = 'minan@example.com';
+  const email = profile.socials.find(s => s.iconName === 'mail')?.url.replace('mailto:', '') || 'minan@example.com';
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(email);
@@ -84,7 +85,7 @@ export const ContactFooter: React.FC = () => {
 
         {/* Social Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto mb-16">
-          {profileData.socials.map((social) => {
+          {profile.socials.map((social) => {
             const Icon = iconMap[social.iconName] || Github;
             return (
               <a
@@ -116,7 +117,13 @@ export const ContactFooter: React.FC = () => {
         <div className="flex items-center gap-2">
           <span>Crafted with</span>
           <Heart className="w-3.5 h-3.5 text-rose-400 fill-rose-400" />
-          <span>by {profileData.name} · {new Date().getFullYear()}</span>
+          <span>by {profile.name} · {new Date().getFullYear()}</span>
+          {/* Secret Admin Entry Button (Invisible/Tiny Dot) */}
+          <button
+            onClick={openAuthDialog}
+            className="w-2 h-2 rounded-full bg-warm-border hover:bg-warm-peach transition-colors ml-1 focus:outline-none"
+            title="管理工作台"
+          />
         </div>
 
         <div className="flex items-center gap-6">

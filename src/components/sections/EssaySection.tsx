@@ -5,20 +5,21 @@ import { Container } from '../layout/Container';
 import { Card } from '../ui/Card';
 import { Badge } from '../ui/Badge';
 import { EssayModal } from '../modals/EssayModal';
-import { essaysData } from '../../data/essays';
+import { useContent } from '../../context/ContentContext';
 import { EssayItem } from '../../types';
 
 export const EssaySection: React.FC = () => {
+  const { essays } = useContent();
   const [selectedEssay, setSelectedEssay] = useState<EssayItem | null>(null);
   const [selectedTag, setSelectedTag] = useState<string>('All');
 
   // Extract all unique tags
-  const allTags = ['All', ...Array.from(new Set(essaysData.flatMap((item) => item.tags)))];
+  const allTags = ['All', ...Array.from(new Set(essays.flatMap((item) => item.tags)))];
 
   const filteredEssays =
     selectedTag === 'All'
-      ? essaysData
-      : essaysData.filter((item) => item.tags.includes(selectedTag));
+      ? essays
+      : essays.filter((item) => item.tags.includes(selectedTag));
 
   return (
     <section id="essays" className="py-24 sm:py-32 relative bg-gradient-to-b from-warm-bg via-[#FFFDF9] to-warm-bg">

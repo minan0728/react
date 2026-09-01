@@ -6,10 +6,11 @@ import { Card } from '../ui/Card';
 import { Badge } from '../ui/Badge';
 import { StatsGrid } from '../experience/StatsGrid';
 import { TimelineCard } from '../experience/TimelineCard';
-import { profileData } from '../../data/profile';
-import { timelineData } from '../../data/timeline';
+import { useContent } from '../../context/ContentContext';
 
 export const ExperienceSection: React.FC = () => {
+  const { profile, timeline } = useContent();
+
   return (
     <section id="experience" className="py-24 sm:py-32 relative bg-warm-bg">
       <Container>
@@ -28,7 +29,7 @@ export const ExperienceSection: React.FC = () => {
 
         {/* Top Stats Grid */}
         <div className="mb-16 sm:mb-20">
-          <StatsGrid stats={profileData.stats} />
+          <StatsGrid stats={profile.stats} />
         </div>
 
         {/* 2-Column Grid: Profile & Timeline */}
@@ -49,8 +50,8 @@ export const ExperienceSection: React.FC = () => {
               <div className="flex items-center gap-5 mb-6">
                 <div className="relative">
                   <img
-                    src={profileData.avatarUrl}
-                    alt={profileData.name}
+                    src={profile.avatarUrl}
+                    alt={profile.name}
                     className="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl object-cover border-2 border-warm-peach/40 shadow-warm-md"
                   />
                   <span className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-warm-matcha text-white flex items-center justify-center text-xs shadow-warm-sm border-2 border-white">
@@ -60,21 +61,21 @@ export const ExperienceSection: React.FC = () => {
 
                 <div>
                   <h3 className="text-xl sm:text-2xl font-bold font-display text-warm-text">
-                    {profileData.name}
+                    {profile.name}
                   </h3>
                   <p className="text-xs sm:text-sm font-medium text-warm-peach mb-1.5">
-                    {profileData.title}
+                    {profile.title}
                   </p>
                   <span className="inline-flex items-center gap-1 text-xs text-warm-text-muted">
                     <MapPin className="w-3.5 h-3.5 text-warm-coral" />
-                    {profileData.location}
+                    {profile.location}
                   </span>
                 </div>
               </div>
 
               {/* Bio Paragraphs */}
               <div className="space-y-3 text-sm sm:text-base text-warm-text/90 leading-relaxed mb-6 pt-4 border-t border-warm-border/60">
-                {profileData.bio.map((para, i) => (
+                {profile.bio.map((para, i) => (
                   <p key={i}>{para}</p>
                 ))}
               </div>
@@ -86,7 +87,7 @@ export const ExperienceSection: React.FC = () => {
                   <span>技术栈与兴趣探索</span>
                 </div>
 
-                {profileData.skills.map((group) => (
+                {profile.skills.map((group) => (
                   <div key={group.category} className="space-y-1.5">
                     <span className="text-xs text-warm-text-muted font-medium block">
                       {group.category}
@@ -117,7 +118,7 @@ export const ExperienceSection: React.FC = () => {
             </div>
 
             <div className="pt-2">
-              {timelineData.map((item, index) => (
+              {timeline.map((item, index) => (
                 <TimelineCard key={item.id} item={item} index={index} />
               ))}
             </div>
