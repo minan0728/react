@@ -97,12 +97,12 @@ export const Navbar: React.FC = () => {
           })}
         </div>
 
-        {/* Say Hi CTA */}
+        {/* Yahallo CTA */}
         <button
           onClick={() => scrollTo('contact')}
-          className="hidden md:inline-flex items-center gap-1.5 ml-2 px-3.5 py-1.5 rounded-full bg-warm-peach text-white text-xs font-semibold shadow-warm-sm hover:bg-[#E8924F] transition-colors"
+          className="hidden md:inline-flex items-center gap-1.5 ml-2 px-3.5 py-1.5 rounded-full bg-warm-peach text-white text-xs font-semibold shadow-warm-sm hover:bg-[#E85B84] transition-colors"
         >
-          <span>Say Hi</span>
+          <span>呀哈喽</span>
           <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
         </button>
       </motion.nav>
