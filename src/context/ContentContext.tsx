@@ -25,9 +25,9 @@ interface ContentContextType {
 }
 
 const STORAGE_KEYS = {
-  PROFILE: 'minan_portfolio_profile',
-  TIMELINE: 'minan_portfolio_timeline',
-  ESSAYS: 'minan_portfolio_essays',
+  PROFILE: 'minan_portfolio_profile_v2',
+  TIMELINE: 'minan_portfolio_timeline_v2',
+  ESSAYS: 'minan_portfolio_essays_v2',
   PASSWORD: 'minan_portfolio_admin_pwd',
 };
 
