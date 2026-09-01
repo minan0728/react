@@ -33,7 +33,7 @@ export const Navbar: React.FC = () => {
   const navItems = [
     { id: 'hero', label: '首页', icon: <Compass className="w-4 h-4" /> },
     { id: 'experience', label: '经历', icon: <User className="w-4 h-4" /> },
-    { id: 'essays', label: '文章', icon: <BookOpen className="w-4 h-4" /> },
+    { id: 'essays', label: '随笔', icon: <BookOpen className="w-4 h-4" /> },
     { id: 'contact', label: '联系', icon: <Send className="w-4 h-4" /> },
   ];
 
@@ -65,7 +65,7 @@ export const Navbar: React.FC = () => {
             <Sparkles className="w-4 h-4" />
           </span>
           <span className="font-display font-bold text-sm md:text-base text-warm-text tracking-wide">
-            Minan<span className="text-warm-peach font-normal">.dev</span>
+            Minan
           </span>
         </button>
 
