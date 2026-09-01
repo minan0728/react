@@ -75,9 +75,9 @@ export const HeroSection: React.FC = () => {
               transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="w-full relative h-48 sm:h-72 md:h-96 lg:h-[30rem] flex items-center justify-center transform -rotate-4 scale-105"
             >
-              {/* CardItem with translateZ for depth and 3D floating effect */}
+              {/* CardItem with subtle translateZ for depth and 3D floating effect */}
               <CardItem
-                translateZ={90}
+                translateZ={24}
                 className="w-full h-full flex items-center justify-center font-display font-black tracking-tighter uppercase leading-none text-transparent bg-clip-text text-[26vw] sm:text-[24vw] lg:text-[23vw] filter drop-shadow-2xl select-none transition-transform duration-200"
                 style={{
                   backgroundImage: `url(${profile.avatarUrl})`,

@@ -21,14 +21,22 @@ export const CardContainer = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMouseEntered, setIsMouseEntered] = useState(false);
+  const rafId = useRef<number | null>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
-    const { left, top, width, height } =
-      containerRef.current.getBoundingClientRect();
-    const x = (e.clientX - left - width / 2) / 25;
-    const y = (e.clientY - top - height / 2) / 25;
-    containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
+    const { left, top, width, height } = containerRef.current.getBoundingClientRect();
+
+    // 缓和倾斜幅度（除以 65，限制最大倾斜角度在 8deg 以内，防止快速划过触发 GPU 重绘破损）
+    const x = Math.max(-8, Math.min(8, (e.clientX - left - width / 2) / 65));
+    const y = Math.max(-8, Math.min(8, (e.clientY - top - height / 2) / 65));
+
+    if (rafId.current) cancelAnimationFrame(rafId.current);
+    rafId.current = requestAnimationFrame(() => {
+      if (containerRef.current) {
+        containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
+      }
+    });
   };
 
   const handleMouseEnter = () => {
@@ -36,9 +44,11 @@ export const CardContainer = ({
   };
 
   const handleMouseLeave = () => {
-    if (!containerRef.current) return;
     setIsMouseEntered(false);
-    containerRef.current.style.transform = `rotateY(0deg) rotateX(0deg)`;
+    if (rafId.current) cancelAnimationFrame(rafId.current);
+    if (containerRef.current) {
+      containerRef.current.style.transform = `rotateY(0deg) rotateX(0deg)`;
+    }
   };
 
   return (
@@ -46,7 +56,7 @@ export const CardContainer = ({
       <div
         className={cn('flex items-center justify-center', containerClassName)}
         style={{
-          perspective: '1000px',
+          perspective: '1200px',
         }}
       >
         <div
@@ -55,11 +65,13 @@ export const CardContainer = ({
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           className={cn(
-            'flex items-center justify-center relative transition-all duration-200 ease-linear',
+            'flex items-center justify-center relative transition-transform duration-300 ease-out will-change-transform',
             className
           )}
           style={{
             transformStyle: 'preserve-3d',
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
           }}
         >
           {children}
@@ -82,6 +94,10 @@ export const CardBody = ({
         'h-full w-full [transform-style:preserve-3d] [&>*]:[transform-style:preserve-3d]',
         className
       )}
+      style={{
+        backfaceVisibility: 'hidden',
+        WebkitBackfaceVisibility: 'hidden',
+      }}
     >
       {children}
     </div>
@@ -98,6 +114,7 @@ export const CardItem = ({
   rotateX = 0,
   rotateY = 0,
   rotateZ = 0,
+  style = {},
   ...rest
 }: {
   as?: React.ElementType;
@@ -109,6 +126,7 @@ export const CardItem = ({
   rotateX?: number | string;
   rotateY?: number | string;
   rotateZ?: number | string;
+  style?: React.CSSProperties;
   [key: string]: any;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -117,16 +135,22 @@ export const CardItem = ({
   useEffect(() => {
     if (!ref.current) return;
     if (isMouseEntered) {
-      ref.current.style.transform = `translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
+      ref.current.style.transform = `translate3d(${translateX}px, ${translateY}px, ${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
     } else {
-      ref.current.style.transform = `translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
+      ref.current.style.transform = `translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
     }
   }, [isMouseEntered, translateX, translateY, translateZ, rotateX, rotateY, rotateZ]);
 
   return (
     <Tag
       ref={ref}
-      className={cn('transition duration-200 ease-linear', className)}
+      className={cn('transition-transform duration-300 ease-out will-change-transform', className)}
+      style={{
+        ...style,
+        transformStyle: 'preserve-3d',
+        backfaceVisibility: 'hidden',
+        WebkitBackfaceVisibility: 'hidden',
+      }}
       {...rest}
     >
       {children}
