@@ -66,7 +66,7 @@ export const profileData: ProfileData = {
     },
     {
       label: 'Email',
-      url: 'mailto:minan@example.com',
+      url: 'mailto:cjsminan@163.com',
       iconName: 'mail',
       description: '随时给我写信，期待交流'
     },

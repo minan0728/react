@@ -28,7 +28,7 @@ const iconMap: Record<string, LucideIcon> = {
 export const ContactFooter: React.FC = () => {
   const { profile, openAuthDialog } = useContent();
   const [copied, setCopied] = useState(false);
-  const email = profile.socials.find(s => s.iconName === 'mail')?.url.replace('mailto:', '') || 'minan@example.com';
+  const email = profile.socials.find(s => s.iconName === 'mail')?.url.replace('mailto:', '') || 'cjsminan@163.com';
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(email);
