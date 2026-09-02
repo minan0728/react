@@ -1,41 +1,24 @@
 import React from 'react';
-import { ContentProvider } from './context/ContentContext';
-import { Navbar } from './components/layout/Navbar';
-import { HeroSection } from './components/sections/HeroSection';
-import { ExperienceSection } from './components/sections/ExperienceSection';
-import { EssaySection } from './components/sections/EssaySection';
-import { ContactFooter } from './components/sections/ContactFooter';
-import { SecretKeyDialog } from './components/admin/SecretKeyDialog';
-import { AdminWorkspaceModal } from './components/admin/AdminWorkspaceModal';
-
-export const AppContent: React.FC = () => {
-  return (
-    <div className="min-h-screen bg-warm-bg text-warm-text font-sans selection:bg-warm-peach/25 selection:text-warm-text">
-      {/* Floating Capsule Navigation */}
-      <Navbar />
-
-      {/* Main Single-Page Sections */}
-      <main>
-        <HeroSection />
-        <ExperienceSection />
-        <EssaySection />
-      </main>
-
-      {/* Full-Page Climax Contact Footer */}
-      <ContactFooter />
-
-      {/* Admin Secret Verification Dialog & Visual Workspace */}
-      <SecretKeyDialog />
-      <AdminWorkspaceModal />
-    </div>
-  );
-};
+import { ScrollVideo } from './components/hero/ScrollVideo';
+import { PillNav } from './components/navigation/PillNav';
+import { ScrollFloat } from './components/hero/ScrollFloat';
+import { GlassPanel } from './components/hero/GlassPanel';
 
 export const App: React.FC = () => {
   return (
-    <ContentProvider>
-      <AppContent />
-    </ContentProvider>
+    <div className="relative min-h-screen bg-black text-white selection:bg-white/20 selection:text-white">
+      {/* Background Scroll Video */}
+      <ScrollVideo src="https://stream.mux.com/43NlHXsaMrmyzWamMk87m01fNyxSTekAD669BBAPBNm00.m3u8" />
+
+      {/* Pill Navigation Bar */}
+      <PillNav />
+
+      {/* 500vh Scroll-driven Interactive Container */}
+      <div style={{ position: 'relative', height: '500vh' }}>
+        <ScrollFloat>{`Unleash The\nFull Power`}</ScrollFloat>
+        <GlassPanel />
+      </div>
+    </div>
   );
 };
 

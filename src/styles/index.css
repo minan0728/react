@@ -1,66 +1,29 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
+@import "tailwindcss";
 
-@layer base {
-  :root {
-    --font-display: 'Outfit', system-ui, sans-serif;
-    --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    background-color: #FFF8FA;
-    color: #2B2328;
-    overflow-x: hidden;
-  }
-
-  /* Custom Warm Scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: #FFF8FA;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #F2DCE4;
-    border-radius: 9999px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #FA7298;
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: "Instrument Serif", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-dirtyline: "Dirtyline36Daysoftype2022", sans-serif;
+  --animate-marquee: marquee 20s linear infinite;
+  @keyframes marquee {
+    100% { transform: translateX(-50%); }
   }
 }
 
-/* Glassmorphism helpers */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(43, 35, 40, 0.06);
+@font-face {
+  font-family: 'Dirtyline36Daysoftype2022';
+  src: url('/Dirtyline-36daysoftype-2022.woff2') format('woff2');
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+  font-display: swap;
 }
 
-.glass-panel-subtle {
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(43, 35, 40, 0.04);
-}
-
-/* Warm Glow gradient effects (Bocchi themed: Pink / Yellow / Cyan) */
-.warm-glow-peach {
-  background: radial-gradient(circle at center, rgba(250, 114, 152, 0.22) 0%, rgba(250, 114, 152, 0) 70%);
-}
-
-.warm-glow-coral {
-  background: radial-gradient(circle at center, rgba(255, 184, 48, 0.2) 0%, rgba(255, 184, 48, 0) 70%);
-}
-
-.warm-glow-matcha {
-  background: radial-gradient(circle at center, rgba(79, 195, 247, 0.22) 0%, rgba(79, 195, 247, 0) 70%);
+body {
+  background-color: black;
+  color: white;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
