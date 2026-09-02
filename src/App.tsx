@@ -1,24 +1,37 @@
 import React from 'react';
-import { ScrollVideo } from './components/hero/ScrollVideo';
-import { PillNav } from './components/navigation/PillNav';
-import { ScrollFloat } from './components/hero/ScrollFloat';
-import { GlassPanel } from './components/hero/GlassPanel';
+import { ContentProvider } from './context/ContentContext';
+import { Navbar } from './components/layout/Navbar';
+import { HeroSection } from './components/sections/HeroSection';
+import { ExperienceSection } from './components/sections/ExperienceSection';
+import { EssaySection } from './components/sections/EssaySection';
+import { ContactFooter } from './components/sections/ContactFooter';
+import { SecretKeyDialog } from './components/admin/SecretKeyDialog';
+import { AdminWorkspaceModal } from './components/admin/AdminWorkspaceModal';
 
 export const App: React.FC = () => {
   return (
-    <div className="relative min-h-screen bg-black text-white selection:bg-white/20 selection:text-white">
-      {/* Background Scroll Video */}
-      <ScrollVideo src="https://stream.mux.com/43NlHXsaMrmyzWamMk87m01fNyxSTekAD669BBAPBNm00.m3u8" />
+    <ContentProvider>
+      <div className="min-h-screen bg-warm-bg text-warm-text font-sans selection:bg-warm-peach/20 selection:text-warm-peach relative">
+        {/* Floating Capsule Navigation Bar */}
+        <Navbar />
 
-      {/* Pill Navigation Bar */}
-      <PillNav />
+        {/* Hero Section */}
+        <HeroSection />
 
-      {/* 500vh Scroll-driven Interactive Container */}
-      <div style={{ position: 'relative', height: '500vh' }}>
-        <ScrollFloat>{`Unleash The\nFull Power`}</ScrollFloat>
-        <GlassPanel />
+        {/* Experience & Timeline Section */}
+        <ExperienceSection />
+
+        {/* Essays Section */}
+        <EssaySection />
+
+        {/* Footer & Contact Climax */}
+        <ContactFooter />
+
+        {/* Admin Secret Dialog & Visual Workspace */}
+        <SecretKeyDialog />
+        <AdminWorkspaceModal />
       </div>
-    </div>
+    </ContentProvider>
   );
 };
 
